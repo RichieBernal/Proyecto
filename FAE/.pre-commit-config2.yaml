@@ -1,0 +1,51 @@
+# This is the `repos` section of the `pre-commit` config file.
+# It specifies the repositories that contain the pre-commit hooks that will be used to validate the code.
+
+repos:
+  - repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: ""  # Specify a specific version/tag/commit or leave empty for the latest version
+    hooks:
+      - id: autopep8
+        exclude: "^$"  # Specify files or patterns to exclude, "^$" excludes nothing (all files will be checked)
+        args: [--verbose]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: [--ignore=E501]
+
+# This section removes unused imports from the code.
+
+# Remove unused imports
+- repo: https://github.com/asottile/pyupgrade
+    rev: master
+    hooks:
+      - id: autoflake
+        args: [
+          "--remove-unused-imports",
+          "--remove-all-unused-imports",
+          "--in-place",
+        ]
+
+# This section sorts the imports in the code according to the PEP8 standard.
+
+# Sort imports in PEP8 style
+- repo: https://github.com/asottile/setuptools-pyproject
+    rev: master
+    hooks:
+      - id: sort-imports
+        args: [--settings=setup.cfg]
+
+# This section adds a pre-commit hook to automatically run these validations.
+
+# Add pre-commit hook to automatically run these validations
+- repo: local
+    hooks:
+      - id: pre-commit
+        name: Run pre-commit hooks
+        entry: pre-commit run --all-files
+        language: python
+
+# The `pre-commit` hook is used to run all of these hooks automatically before each commit.
+# This helps to ensure that the code always meets the quality standards.
