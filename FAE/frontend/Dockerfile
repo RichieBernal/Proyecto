@@ -1,4 +1,4 @@
-# app(front-end)
+#app(front-end)
 FROM python:3.11-slim
 
 WORKDIR /

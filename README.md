@@ -293,11 +293,11 @@ Follow the next steps to run the test.
 
 #### Build the image
 
-* Ensure you are in the `itesm-mlops-project/` directory (root folder).
+* Ensure you are in the `PROYECTO/` directory (root folder).
 * Run the following code to build the image:
 
     ```bash
-    docker build -t titanic-image ./itesm_mlops_project/app/
+    docker build -t fae-image ./FAE/app/
     ```
 
 * Inspect the image created by running this command:
@@ -309,16 +309,16 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    REPOSITORY      TAG       IMAGE ID       CREATED       SIZE
-    titanic-image   latest    bb48551cf542   2 hours ago   500MB
+    REPOSITORY               TAG       IMAGE ID       CREATED              SIZE
+    fae-image                latest    540f4e683c3a   About a minute ago   495MB
     ```
 
 #### Run Titanic REST API
 
-1. Run the next command to start the `titanic-image` image in a container.
+1. Run the next command to start the `fae-image` image in a container.
 
     ```bash
-    docker run -d --rm --name titanic-c -p 8000:8000 titanic-image
+    docker run -d --rm --name fae-c -p 8000:8000 fae-image
     docker run -d --rm --name frontend-c -p 3000:5000 frontend-img
     ```
 
@@ -332,12 +332,12 @@ Follow the next steps to run the test.
 
     ```bash
     CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                    NAMES
-    53d78fb5223f   titanic-image   "uvicorn main:app --…"   19 seconds ago   Up 18 seconds   0.0.0.0:8000->8000/tcp   titanic-c
+    2f1f34498517   fae-image   "uvicorn main:app --…"   17 seconds ago   Up 16 seconds   0.0.0.0:8000->8000/tcp   fae-c
     ```
 
 #### Checking endpoints
 
-1. Access `http://127.0.0.1:8000/`, and you will see a message like this `"Titanic classifier is all ready to go!"`
+1. Access `http://127.0.0.1:8000/`, and you will see a message like this `"FAE  classifier is all ready to go!"`
 2. A file called `main_api.log` will be created automatically inside the container. We will inspect it below.
 3. Access `http://127.0.0.1:8000/docs`, the browser will display something like this:
     ![FastAPI Docs](docs/imgs/fast-api-docs.png)
@@ -348,22 +348,16 @@ Follow the next steps to run the test.
 
         ```bash
         {
-        "pclass_nan": 0,
-        "age_nan": 0,
-        "sibsp_nan": 0,
-        "parch_nan": 0,
-        "fare_nan": 0,
-        "sex_male": 1,
-        "cabin_Missing": 1,
-        "cabin_rare": 0,
-        "embarked_Q": 1,
-        "embarked_S": 0,
-        "title_Mr": 1,
-        "title_Mrs": 0,
-        "title_rar": 0
+        "SIZE": 3,
+        "FUEL_lpg": 0,
+        "FUEL_kerosene": 1,
+        "FUEL_thinner": 0,
+        "DISTANCE": 100,
+        "DESIBEL": 104,
+        "AIRFLOW": 8.8,
+        "FREQUENCY": 45
         }
         ```
-
         Response body
         The output will be:
 
@@ -414,7 +408,7 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    root@53d78fb5223f:/# 
+    root@2f1f34498517:/# 
     ```
 
 2. Check the existing files:
@@ -438,11 +432,11 @@ Follow the next steps to run the test.
     Output:
 
     ```log
-    2023-08-21 22:27:33,132:main:main:INFO:Titanic classifier is all ready to go!
-    2023-08-21 22:30:18,810:main:main:INFO:Input values: [[0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0]]
-    2023-08-21 22:30:18,811:main:main:INFO:Resultado predicción: [0]
-    2023-08-21 22:31:42,424:main:main:INFO:Input values: [[0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0]]
-    2023-08-21 22:31:42,426:main:main:INFO:Resultado predicción: [1]
+    2023-08-23 06:17:23,008:main:main:INFO:FAE classifier is all ready to go!
+    2023-08-23 06:30:51,459:main:main:INFO:Input values:[[3, 0, 1, 0, 100, 104, 8.8, 45]]
+    2023-08-23 06:30:51,460:main:main:INFO:Resultado predicción: [0]
+    2023-08-23 06:34:41,828:main:main:INFO:Input values:[[7, 1, 0, 0, 70, 105, 11.6, 24]]
+    2023-08-23 06:34:41,828:main:main:INFO:Resultado predicción: [0]
 
     ```
 
@@ -455,7 +449,7 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    Successfully copied 2.05kB to .../itesm-mlops-project/.
+    Successfully copied 4.1kB to C:\Users\rbernal\Documents\GitHub\Proyecto\.
     ```
 
 #### Delete container and image
@@ -463,7 +457,7 @@ Follow the next steps to run the test.
 * Stop the container:
 
     ```bash
-    docker stop titanic-c
+    docker stop fae-c
     ```
 
 * Verify it was deleted

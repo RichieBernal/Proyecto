@@ -11,14 +11,14 @@ from fastapi import FastAPI
 from starlette.responses import JSONResponse
 
 from predictor.predict import ModelPredictor
-from api.models.models import Fire
+from models.models import Fire
 
 logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
 logger.setLevel(logging.DEBUG) # Configuramos el nivel de logging
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
 
-file_handler = logging.FileHandler('FAE/api/main_api.log') # Indicamos el nombre del archivo
+file_handler = logging.FileHandler('main_api.log') # Indicamos el nombre del archivo
 
 file_handler.setFormatter(formatter) # Configuramos el formato
 
@@ -34,7 +34,7 @@ async def healthcheck():
 
 @app.post('/predict')
 def extract_name(fire_features: Fire):
-    predictor = ModelPredictor('FAE/models/logistic_regression_output.pkl')
+    predictor = ModelPredictor('ml_models/logistic_regression_output.pkl')
     X = [fire_features.SIZE,
          fire_features.FUEL_lpg,
          fire_features.FUEL_kerosene,
