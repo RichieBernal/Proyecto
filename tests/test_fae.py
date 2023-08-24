@@ -12,15 +12,13 @@ from FAE.preprocess.preprocess_data import OneHotEncoder
 
 def test_one_hot_encoder_transform():
     """
-    Test the `transform` method of the MissingIndicator transformer.
+    Test the `transform` method of the OneHotEncoder transformer.
 
-    This test checks if the transformer correctly adds indicator features for missing values
-    in the specified variables and returns the modified DataFrame.
+    This test checks if the transformer to convert categorical variables into a numerical representation creating binary columns for each category in the categorical variable.
 
-    The test case uses a sample DataFrame with missing values and a custom transformer instance.
+    The test case uses a sample DataFrame with cat values and a custom transformer instance.
 
-    It checks if the transformer successfully adds indicator features for the specified variables,
-    and the transformed DataFrame has the expected additional columns.
+    It checks if the transformer successfully adds columns for the specified values.
 
     Note: Make sure to replace 'your_module' with the actual module name where the MissingIndicator class is defined.
     """
@@ -61,7 +59,7 @@ def test_csv_file_existence():
     Test case to check if the CSV file exists.
     """
     # Provide the path to the CSV file that needs to be tested
-    csv_file_path = "FAE/data/retrieved_data.csv"
+    csv_file_path = "FAE/data/data_fire.csv"
     
     DATASETS_DIR = './data/'
     

@@ -27,7 +27,7 @@ This module integrates all the knowledge learned in the previous modules. A demo
 
 ### Baseline
 
-This MLOps project is focused on demonstrating the implementation of a complete workflow that ranges from data preparation to exposing a local web service to make predictions using a linear regression model. The chosen dataset is the famous Titanic dataset, which contains information about the Titanic passengers and whether or not they survived the disaster.
+This MLOps project is focused on demonstrating the implementation of a complete workflow that ranges from data preparation to exposing a local web service to make predictions using a linear regression model. The chosen dataset is Acoustic Extinguisher Fire Dataset from Kaggle, which contains information about Classification of Flame Extinction Based on Acoustic Oscillations.
 
 The purpose is to establish a starting point or "baseline" that will serve as a reference to evaluate future improvements and not only more complex algorithms but more complex components and further deployments.
 
@@ -41,11 +41,11 @@ In other words, knowledge is integrated regarding the learning of good software 
 
 You can find the Titanic experiments here:
 
-* [1-exploring-data.ipynb](docs/notebooks/1-exploring-data.ipynb)
-* [2-organizing-ideas.ipynb](docs/notebooks/2-organizing-ideas.ipynb)
-* [3-create-convenient-classes.ipynb](docs/notebooks/3-create-convenient-classes.ipynb)
-* [4_creating_pipeline.ipynb](docs/notebooks/4_creating_pipeline.ipynb)
-* [5_refactored_titanic_notebook.ipynb](docs/notebooks/5_refactored_titanic_notebook.ipynb)
+* [1_exploring_data.ipynb](docs\notebooks\1_exploring_data.ipynb)
+* [2_general_ideas.ipynb](docs\notebooks\2_general_ideas.ipynb)
+* [3_create_convenient_classes.ipynb](docs\notebooks\3_create_convenient_classes.ipynb)
+* [4_creating_pipeline.ipynb](docs\notebooks\4_creating_pipeline.ipynb)
+* [5_refactored_fae_notebook.ipynb](docs\notebooks\5_refactored_fae_notebook.ipynb)
 
 ## Setup
 
@@ -77,14 +77,21 @@ Run the following command to install the libraries/packages.
 To train the Logistic Model, only run the following code:
 
 ```bash
-python itesm_mlops_project/itesm_mlops_project.py
+python c:/Users/rbernal/DocumeProyecto Final/ProyectoFinal/FAE/fae.py
 ```
 
 Output:
 
 ```bash
-test roc-auc : 0.8152286743603835
-test accuracy: 0.7748091603053435
+Directory './data/' already exists.
+Index(['SIZE', 'FUEL', 'FUEL_lpg', 'FUEL_kerosene', 'FUEL_thinner', 'DISTANCE',
+       'DESIBEL', 'AIRFLOW', 'FREQUENCY'],
+      dtype='object')
+Index(['SIZE', 'FUEL', 'FUEL_lpg', 'FUEL_kerosene', 'FUEL_thinner', 'DISTANCE',
+       'DESIBEL', 'AIRFLOW', 'FREQUENCY'],
+      dtype='object')
+test roc-auc : 0.9547786269375567
+test accuracy: 0.8770421324161651
 Model saved in ./models/logistic_regression_output.pkl
 ```
 
@@ -94,11 +101,8 @@ Model saved in ./models/logistic_regression_output.pkl
 
 You can find the test location in the [test](tests) folder, and the following tests:
 
-* Test `test_missing_indicator_transform`:  
-Test the `transform` method of the MissingIndicator transformer.
-
-* Test `test_missing_indicator_fit`:  
-Test the `fit` method of the MissingIndicator transformer.
+* Test `test_one_hot_encoder_transform`:  
+Test the `transform` method of the OneHotEncoder transformer.
 
 * Test `test_csv_file_existence`:  
 Test case to check if the CSV file exists.
@@ -110,83 +114,22 @@ Test to validate the existence of a `.pkl` model file.
 
 #### Test `Data Retriever` class
 
-The following test validates the [load_data.py](itesm_mlops_project/load/load_data.py) module, with the `DataRetriever` class.
+The following test validates the [load_data.py](FAE\load\load_data.py) module, with the `DataRetriever` class.
 
 Follow the next steps to run the test.
 
 * Run in the terminal:
 
     ```bash
-    pytest ./tests/test_itesm_mlops_project.py::test_csv_file_existence -v
+    pytest ./tests/test_fae.py::test_csv_file_existence -v
     ```
 
 * You should see the following data output:
 
-    ```pytest
-    =========================================== test session starts ===========================================
-    platform darwin -- Python 3.10.12, pytest-7.4.0, pluggy-1.2.0 -- /Users/carloslme/Documents/GitHub/itesm-mlops-project/venv/bin/python3.10
-    cachedir: .pytest_cache
-    rootdir: /Users/carloslme/Documents/GitHub/itesm-mlops-project
-    plugins: anyio-3.7.1
-    collected 1 item                                                                                          
+    ```                                                                         
+    tests/test_fae.py::test_csv_file_existence 
+    PASSED                                   [100%]
 
-    tests/test_itesm_mlops_project.py::test_csv_file_existence PASSED                                   [100%]
-
-    ============================================ 1 passed in 1.76s ============================================
-    ```
-
-#### Test `MissingIndicator` class - `transform` method
-
-The following test validates the [preprocess_data.py](itesm_mlops_project/preprocess/preprocess_data.py) module, with the `MissingIndicator` class in the `transform` method.
-
-Follow the next steps to run the test.
-
-* Run in the terminal:
-
-    ```bash
-    pytest ./tests/test_itesm_mlops_project.py::test_missing_indicator_transform -v
-    ```
-
-* You should see the following data output:
-
-    ```pytest
-    ==================================================================== test session starts =====================================================================
-    platform darwin -- Python 3.10.12, pytest-7.4.0, pluggy-1.2.0 -- /Users/carloslme/Documents/GitHub/itesm-mlops-project/venv/bin/python3.10
-    cachedir: .pytest_cache
-    rootdir: /Users/carloslme/Documents/GitHub/itesm-mlops-project
-    plugins: anyio-3.7.1
-    collected 1 item                                                                                                                                             
-
-    tests/test_itesm_mlops_project.py::test_missing_indicator_transform PASSED                                                                             [100%]
-
-    ===================================================================== 1 passed in 0.77s ======================================================================
-    ```
-
-#### Test `MissingIndicator` class - `fit` method
-
-The following test validates the [preprocess_data.py](itesm_mlops_project/preprocess/preprocess_data.py) module, with the `MissingIndicator` class in the `fit` method.
-
-Follow the next steps to run the test.
-
-* Run in the terminal:
-
-    ```bash
-    pytest ./tests/test_itesm_mlops_project.py::test_missing_indicator_fit -v
-    ```
-
-* You should see the following data output:
-
-    ```pytest
-    =========================================== test session starts ===========================================
-    platform darwin -- Python 3.10.12, pytest-7.4.0, pluggy-1.2.0 -- /Users/carloslme/Documents/GitHub/itesm-mlops-project/venv/bin/python3.10
-    cachedir: .pytest_cache
-    rootdir: /Users/carloslme/Documents/GitHub/itesm-mlops-project
-    plugins: anyio-3.7.1
-    collected 1 item                                                                                          
-
-    tests/test_itesm_mlops_project.py::test_missing_indicator_fit PASSED                                [100%]
-
-    ============================================ 1 passed in 0.73s ============================================
     ```
 
 #### Test model existence
@@ -198,23 +141,14 @@ Follow the next steps to run the test.
 * Run in the terminal:
 
     ```bash
-    pytest ./tests/test_itesm_mlops_project.py::test_model_existence -v -s
+    pytest ./tests/test_fae.py::test_model_existence -v -s
     ```
 
 * You should see the following data output:
 
-    ```pytest
-    =========================================== test session starts ===========================================
-    platform darwin -- Python 3.10.12, pytest-7.4.0, pluggy-1.2.0 -- /Users/carloslme/Documents/GitHub/itesm-mlops-project/venv/bin/python3.10
-    cachedir: .pytest_cache
-    rootdir: /Users/carloslme/Documents/GitHub/itesm-mlops-project
-    plugins: anyio-3.7.1
-    collected 1 item                                                                                          
-
-    tests/test_itesm_mlops_project.py::test_model_existence itesm_mlops_project/models/logistic_regression_output.pkl
+    ```
+    tests/test_fae.py::test_model_existence FAE/models/logistic_regression_output.pkl
     PASSED
-
-    ============================================ 1 passed in 0.79s ============================================
     ```
 
 ## Usage
@@ -224,61 +158,28 @@ Follow the next steps to run the test.
 * Run the next command to start the Titanic API locally
 
     ```bash
-    uvicorn itesm_mlops_project.api.main:app --reload
+    uvicorn FAE.api.main:app --reload
     ```
 
 #### Checking endpoints
 
-1. Access `http://127.0.0.1:8000/`, you will see a message like this `"Titanic is all ready to go!"`
+1. Access `http://127.0.0.1:8000/`, you will see a message like this `""FAE classifier is all ready to go!""`
 2. Access `http://127.0.0.1:8000/docs`, the browser will display something like this:
-![FastAPI Docs](docs/imgs/fast-api-docs.png)
+![FastAPI Docs](docs\fast-api.png)
 3. Try running the following predictions with the endpoint by writing the following values:
     * **Prediction 1**  
         Request body
 
         ```bash
         {
-        "pclass_nan": 0,
-        "age_nan": 0,
-        "sibsp_nan": 0,
-        "parch_nan": 0,
-        "fare_nan": 0,
-        "sex_male": 1,
-        "cabin_Missing": 1,
-        "cabin_rare": 0,
-        "embarked_Q": 1,
-        "embarked_S": 0,
-        "title_Mr": 1,
-        "title_Mrs": 0,
-        "title_rar": 0
-        }
-        ```
-
-        Response body
-        The output will be:
-
-        ```bash
-        "Resultado predicción: [0]"
-        ```
-
-    * **Prediction 2**  
-        Request body
-
-        ```bash
-         {
-            "pclass_nan": 0,
-            "age_nan": 0,
-            "sibsp_nan": 1,
-            "parch_nan": 0,
-            "fare_nan": 0,
-            "sex_male": 0,
-            "cabin_Missing": 0,
-            "cabin_rare": 0,
-            "embarked_Q": 1,
-            "embarked_S": 0,
-            "title_Mr": 1,
-            "title_Mrs": 0,
-            "title_rar": 0
+         "SIZE": 0,
+         "FUEL_lpg": 0,
+         "FUEL_kerosene": 0,
+         "FUEL_thinner": 0,
+         "DISTANCE": 0,
+         "DESIBEL": 0,
+         "AIRFLOW": 0,
+         "FREQUENCY": 0
         }
         ```
 
@@ -287,6 +188,29 @@ Follow the next steps to run the test.
 
         ```bash
         "Resultado predicción: [1]"
+        ```
+
+    * **Prediction 2**  
+        Request body
+
+        ```bash
+         {
+         "SIZE": 6,
+         "FUEL_lpg": 0,
+         "FUEL_kerosene": 0,
+         "FUEL_thinner": 0,
+         "DISTANCE": 0,
+         "DESIBEL": 0,
+         "AIRFLOW": 0,
+         "FREQUENCY": 0
+        }
+        ```
+
+        Response body
+        The output will be:
+
+        ```bash
+        "Resultado predicción: [0]"
         ```
 
 ### Individual deployment of the API with Docker and usage
@@ -313,7 +237,7 @@ Follow the next steps to run the test.
     fae-image                latest    540f4e683c3a   About a minute ago   495MB
     ```
 
-#### Run Titanic REST API
+#### Run FAE REST API
 
 1. Run the next command to start the `fae-image` image in a container.
 
@@ -348,46 +272,16 @@ Follow the next steps to run the test.
 
         ```bash
         {
-        "SIZE": 3,
-        "FUEL_lpg": 0,
-        "FUEL_kerosene": 1,
-        "FUEL_thinner": 0,
-        "DISTANCE": 100,
-        "DESIBEL": 104,
-        "AIRFLOW": 8.8,
-        "FREQUENCY": 45
+        "SIZE": 0,
+         "FUEL_lpg": 0,
+         "FUEL_kerosene": 0,
+         "FUEL_thinner": 0,
+         "DISTANCE": 0,
+         "DESIBEL": 0,
+         "AIRFLOW": 0,
+         "FREQUENCY": 0
         }
         ```
-        Response body
-        The output will be:
-
-        ```bash
-        "Resultado predicción: [0]"
-        ```
-
-        ![Prediction 1](docs/imgs/prediction-1.png)
-
-    * **Prediction 2**  
-        Request body
-
-        ```bash
-         {
-            "pclass_nan": 0,
-            "age_nan": 0,
-            "sibsp_nan": 1,
-            "parch_nan": 0,
-            "fare_nan": 0,
-            "sex_male": 0,
-            "cabin_Missing": 0,
-            "cabin_rare": 0,
-            "embarked_Q": 1,
-            "embarked_S": 0,
-            "title_Mr": 1,
-            "title_Mrs": 0,
-            "title_rar": 0
-        }
-        ```
-
         Response body
         The output will be:
 
@@ -395,14 +289,39 @@ Follow the next steps to run the test.
         "Resultado predicción: [1]"
         ```
 
-        ![Prediction 2](docs/imgs/prediction-2.png)
+        ![Prediction 1](docs\prediction1.png)
+
+    * **Prediction 2**  
+        Request body
+
+        ```bash
+         {
+        "SIZE": 6,
+        "FUEL_lpg": 0,
+        "FUEL_kerosene": 0,
+        "FUEL_thinner": 0,
+        "DISTANCE": 0,
+        "DESIBEL": 0,
+        "AIRFLOW": 0,
+        "FREQUENCY": 0
+        }
+        ```
+
+        Response body
+        The output will be:
+
+        ```bash
+        "Resultado predicción: [0]"
+        ```
+
+        ![Prediction 2](docs\prediction2.png)
 
 #### Opening the logs
 
 1. Run the command
 
     ```bash
-    docker exec -it titanic-c bash
+    docker exec -it fae-c bash
     ```
 
     Output:
@@ -443,7 +362,7 @@ Follow the next steps to run the test.
 4. Copy the logs to the root folder:
 
     ```bash
-    docker cp titanic-c:/main_api.log .
+    docker cp fae-c:/main_api.log .
     ```
 
     Output:
@@ -475,7 +394,7 @@ Follow the next steps to run the test.
 * Delete the image
 
     ```bash
-    docker rmi titanic-image
+    docker rmi fae-image
     ```
 
     Output:
@@ -501,27 +420,27 @@ docker network create AIservice
 * Run the next command to start the App and Frontend APIs
 
     ```bash
-    docker-compose -f itesm_mlops_project/docker-compose.yml up --build
+    docker-compose -f FAE/docker-compose.yml up --build
     ```
 
     You will see something like this:
 
     ```bash
-    Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
-    Creating itesm_mlops_project-app-1 ... done
-    Creating itesm_mlops_project-frontend-1 ... done
-    itesm_mlops_project-app-1       | INFO:     Will watch for changes in these directories: ['/']
-    itesm_mlops_project-app-1       | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-    itesm_mlops_project-app-1       | INFO:     Started reloader process [1] using StatReload
-    itesm_mlops_project-frontend-1  | INFO:     Will watch for changes in these directories: ['/']
-    itesm_mlops_project-frontend-1  | INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
-    itesm_mlops_project-frontend-1  | INFO:     Started reloader process [1] using StatReload
-    itesm_mlops_project-app-1       | INFO:     Started server process [8]
-    itesm_mlops_project-app-1       | INFO:     Waiting for application startup.
-    itesm_mlops_project-app-1       | INFO:     Application startup complete.
-    itesm_mlops_project-frontend-1  | INFO:     Started server process [9]
-    itesm_mlops_project-frontend-1  | INFO:     Waiting for application startup.
-    itesm_mlops_project-frontend-1  | INFO:     Application startup complete.
+    ✔ Container fae-app-1       Created                                                        0.0s 
+    ✔ Container fae-frontend-1  Created                                                        0.0s 
+    Attaching to fae-app-1, fae-frontend-1
+    fae-app-1       | INFO:     Will watch for changes in these directories: ['/']
+    fae-app-1       | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+    fae-app-1       | INFO:     Started reloader process [1] using StatReload
+    fae-frontend-1  | INFO:     Will watch for changes in these directories: ['/']
+    fae-frontend-1  | INFO:     Uvicorn running on http://0.0.0.0:3000 (Press CTRL+C to quit)
+    fae-frontend-1  | INFO:     Started reloader process [1] using StatReload
+    fae-app-1       | INFO:     Started server process [8]
+    fae-app-1       | INFO:     Waiting for application startup.
+    fae-app-1       | INFO:     Application startup complete.
+    fae-frontend-1  | INFO:     Started server process [8]
+    fae-frontend-1  | INFO:     Waiting for application startup.
+    fae-frontend-1  | INFO:     Application startup complete.
     ```
 
 #### Checking endpoints in Frontend
@@ -529,7 +448,7 @@ docker network create AIservice
 1. Access `http://127.0.0.1:3000/`, and you will see a message like this `"Front-end is all ready to go!"`
 2. A file called `frontend.log` will be created automatically inside the container. We will inspect it below.
 3. Access `http://127.0.0.1:3000/docs`, the browser will display something like this:
-    ![Frontend Docs](docs/imgs/frontend-1.png)
+    ![Frontend Docs](docs\frontend-1.png)
 
 4. Try running the following predictions with the endpoint `classify` by writing the following values:
     * **Prediction 1**  
@@ -537,49 +456,14 @@ docker network create AIservice
 
         ```bash
         {
-        "pclass_nan": 0,
-        "age_nan": 0,
-        "sibsp_nan": 0,
-        "parch_nan": 0,
-        "fare_nan": 0,
-        "sex_male": 1,
-        "cabin_Missing": 1,
-        "cabin_rare": 0,
-        "embarked_Q": 1,
-        "embarked_S": 0,
-        "title_Mr": 1,
-        "title_Mrs": 0,
-        "title_rar": 0
-        }
-        ```
-
-        Response body
-        The output will be:
-
-        ```bash
-        "Resultado predicción: [0]"
-        ```
-
-        ![Frontend Prediction 1](docs/imgs/frontend-prediction-1.png)
-
-    * **Prediction 2**  
-        Request body
-
-        ```bash
-         {
-            "pclass_nan": 0,
-            "age_nan": 0,
-            "sibsp_nan": 1,
-            "parch_nan": 0,
-            "fare_nan": 0,
-            "sex_male": 0,
-            "cabin_Missing": 0,
-            "cabin_rare": 0,
-            "embarked_Q": 1,
-            "embarked_S": 0,
-            "title_Mr": 1,
-            "title_Mrs": 0,
-            "title_rar": 0
+        "SIZE": 0,
+        "FUEL_lpg": 0,
+        "FUEL_kerosene": 0,
+        "FUEL_thinner": 0,
+        "DISTANCE": 0,
+        "DESIBEL": 0,
+        "AIRFLOW": 0,
+        "FREQUENCY": 0
         }
         ```
 
@@ -590,7 +474,32 @@ docker network create AIservice
         "Resultado predicción: [1]"
         ```
 
-        ![Frontend Prediction 2](docs/imgs/frontend-prediction-2.png)
+        ![Frontend Prediction 1](docs\prediction1.png)
+
+    * **Prediction 2**  
+        Request body
+
+        ```bash
+         {
+        "SIZE": 6,
+        "FUEL_lpg": 0,
+        "FUEL_kerosene": 0,
+        "FUEL_thinner": 0,
+        "DISTANCE": 0,
+        "DESIBEL": 0,
+        "AIRFLOW": 0,
+        "FREQUENCY": 0
+        }
+        ```
+
+        Response body
+        The output will be:
+
+        ```bash
+        "Resultado predicción: [0]"
+        ```
+
+        ![Frontend Prediction 2](docs\prediction2.png)
 
 #### Opening the logs in Frontend
 
@@ -605,18 +514,17 @@ Open a new terminal, and execute the following commands:
     Output:
 
     ```bash
-    Successfully copied 3.12kB to .../itesm-mlops-project/.
+    Successfully copied 3.07kB to ...\Proyecto\.
     ```
 
 2. You can inspect the logs and see something similar to this:
 
     ```bash
-    INFO: 2023-08-21 23:42:00,057|main|Front-end is all ready to go!
-    INFO: 2023-08-21 23:45:04,575|main|Front-end is all ready to go!
-    DEBUG: 2023-08-21 23:45:43,724|main|Incoming input in the front end: {'pclass_nan': 0, 'age_nan': 0, 'sibsp_nan': 0, 'parch_nan': 0, 'fare_nan': 0, 'sex_male': 1, 'cabin_Missing': 1, 'cabin_rare': 0, 'embarked_Q': 1, 'embarked_S': 0, 'title_Mr': 1, 'title_Mrs': 0, 'title_rar': 0}
-    DEBUG: 2023-08-21 23:45:43,742|main|Prediction: "Resultado predicción: [0]"
-    DEBUG: 2023-08-21 23:46:47,024|main|Incoming input in the front end: {'pclass_nan': 0, 'age_nan': 0, 'sibsp_nan': 1, 'parch_nan': 0, 'fare_nan': 0, 'sex_male': 0, 'cabin_Missing': 0, 'cabin_rare': 0, 'embarked_Q': 1, 'embarked_S': 0, 'title_Mr': 1, 'title_Mrs': 0, 'title_rar': 0}
-    DEBUG: 2023-08-21 23:46:47,038|main|Prediction: "Resultado predicción: [1]"
+    INFO: 2023-08-24 07:29:24,371|main|Front-end is all ready to go!
+    DEBUG: 2023-08-24 07:30:52,453|main|Incoming input in the front end: {'SIZE': 0, 'FUEL_lpg': 0, 'FUEL_kerosene': 0, 'FUEL_thinner': 0, 'DISTANCE': 0, 'DESIBEL': 0, 'AIRFLOW': 0, 'FREQUENCY': 0}
+    DEBUG: 2023-08-24 07:30:53,098|main|Prediction: "Resultado predicción: [1]"
+    DEBUG: 2023-08-24 07:31:57,928|main|Incoming input in the front end: {'SIZE': 6, 'FUEL_lpg': 0, 'FUEL_kerosene': 0, 'FUEL_thinner': 0, 'DISTANCE': 0, 'DESIBEL': 0, 'AIRFLOW': 0, 'FREQUENCY': 0}
+    DEBUG: 2023-08-24 07:31:57,934|main|Prediction: "Resultado predicción: [0]"
     ```
 
 #### Opening the logs in App
@@ -626,22 +534,22 @@ Open a new terminal, and execute the following commands:
 1. Copy the `app` logs to the root folder:
 
     ```bash
-    docker cp itesm_mlops_project-app-1:/main_api.log .
+    docker cp fae-app-1:/main_api.log .
     ```
 
     Output:
 
     ```bash
-    Successfully copied 2.56kB to .../itesm-mlops-project/.
+    Successfully copied 2.05kB to ...\Proyecto\.
     ```
 
 2. You can inspect the logs and see something similar to this:
 
     ```bash
-    2023-08-21 23:45:43,738:main:main:INFO:Input values: [[0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0]]
-    2023-08-21 23:45:43,740:main:main:INFO:Resultado predicción: [0]
-    2023-08-21 23:46:47,034:main:main:INFO:Input values: [[0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0]]
-    2023-08-21 23:46:47,036:main:main:INFO:Resultado predicción: [1]
+    2023-08-24 07:30:53,096:main:main:INFO:Input values:[[0, 0, 0, 0, 0, 0, 0.0, 0]]
+    2023-08-24 07:30:53,097:main:main:INFO:Resultado predicción: [1]
+    2023-08-24 07:31:57,931:main:main:INFO:Input values:[[6, 0, 0, 0, 0, 0, 0.0, 0]]
+    2023-08-24 07:31:57,932:main:main:INFO:Resultado predicción: [0]
     ```
 
 ### Delete the containers with Docker Compose
@@ -649,30 +557,30 @@ Open a new terminal, and execute the following commands:
 1. Stop the containers that have previously been launched with `docker-compose up`.
 
     ```bash
-    docker-compose -f itesm_mlops_project/docker-compose.yml stop 
+    docker-compose -f fae/docker-compose.yml stop 
     ```
 
     Output:
 
     ```bash
     [+] Stopping 2/2
-    ✔ Container itesm_mlops_project-frontend-1  Stopped                           0.3s 
-    ✔ Container itesm_mlops_project-app-1       Stopped                           0.4s 
+    ✔ Container fae-frontend-1  Stopped                                                       0.7s 
+    ✔ Container fae-app-1       Stopped                                                       1.1s 
     ```
 
 2. Delete the containers stopped from the stage.
 
     ```bash
-    docker-compose -f itesm_mlops_project/docker-compose.yml rm
+    docker-compose -f fae/docker-compose.yml rm
     ```
 
     Output:
 
     ```bash
-    ? Going to remove itesm_mlops_project-frontend-1, itesm_mlops_project-app-1 Yes
+    ? Going to remove fae-frontend-1, fae-app-1 Yes
     [+] Removing 2/0
-    ✔ Container itesm_mlops_project-app-1       Removed                           0.0s 
-    ✔ Container itesm_mlops_project-frontend-1  Removed                           0.0s 
+     ✔ Container fae-app-1       Removed                                              0.0s 
+     ✔ Container fae-frontend-1  Removed                                              0.0s 
     ```
 
 ## Resources
