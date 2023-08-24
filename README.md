@@ -591,7 +591,7 @@ Here you will find information about this project and more.
 
 * [MNA - Master in Applied Artificial Intelligence](https://learn.maestriasydiplomados.tec.mx/pos-programa-mna-v-)
 * [ITESM MLOps Course GitHub Repository](https://github.com/carloslme/itesm-mlops)
-
+* []
 ## Contact information
 
 * **Credits**
