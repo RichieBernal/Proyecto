@@ -165,7 +165,7 @@ Follow the next steps to run the test.
 
 1. Access `http://127.0.0.1:8000/`, you will see a message like this `""FAE classifier is all ready to go!""`
 2. Access `http://127.0.0.1:8000/docs`, the browser will display something like this:
-![FastAPI Docs](docs\fast-api.png)
+![FastAPI Docs](docs\img\fast-api.png)
 3. Try running the following predictions with the endpoint by writing the following values:
     * **Prediction 1**  
         Request body
@@ -264,7 +264,7 @@ Follow the next steps to run the test.
 1. Access `http://127.0.0.1:8000/`, and you will see a message like this `"FAE  classifier is all ready to go!"`
 2. A file called `main_api.log` will be created automatically inside the container. We will inspect it below.
 3. Access `http://127.0.0.1:8000/docs`, the browser will display something like this:
-    ![FastAPI Docs](docs/imgs/fast-api-docs.png)
+    ![FastAPI Docs](docs\img\fast-api.png)
 
 4. Try running the following predictions with the endpoint by writing the following values:
     * **Prediction 1**  
@@ -289,7 +289,7 @@ Follow the next steps to run the test.
         "Resultado predicción: [1]"
         ```
 
-        ![Prediction 1](docs\prediction1.png)
+        ![Prediction 1](docs\img\prediction1.png)
 
     * **Prediction 2**  
         Request body
@@ -314,7 +314,7 @@ Follow the next steps to run the test.
         "Resultado predicción: [0]"
         ```
 
-        ![Prediction 2](docs\prediction2.png)
+        ![Prediction 2](docs\img\prediction2.png)
 
 #### Opening the logs
 
@@ -448,7 +448,7 @@ docker network create AIservice
 1. Access `http://127.0.0.1:3000/`, and you will see a message like this `"Front-end is all ready to go!"`
 2. A file called `frontend.log` will be created automatically inside the container. We will inspect it below.
 3. Access `http://127.0.0.1:3000/docs`, the browser will display something like this:
-    ![Frontend Docs](docs\frontend-1.png)
+    ![Frontend Docs](docs\img\frontend-1.png)
 
 4. Try running the following predictions with the endpoint `classify` by writing the following values:
     * **Prediction 1**  
@@ -474,7 +474,7 @@ docker network create AIservice
         "Resultado predicción: [1]"
         ```
 
-        ![Frontend Prediction 1](docs\prediction1.png)
+        ![Frontend Prediction 1](docs\img\prediction1.png)
 
     * **Prediction 2**  
         Request body
@@ -499,7 +499,7 @@ docker network create AIservice
         "Resultado predicción: [0]"
         ```
 
-        ![Frontend Prediction 2](docs\prediction2.png)
+        ![Frontend Prediction 2](docs\img\prediction2.png)
 
 #### Opening the logs in Frontend
 
@@ -591,7 +591,9 @@ Here you will find information about this project and more.
 
 * [MNA - Master in Applied Artificial Intelligence](https://learn.maestriasydiplomados.tec.mx/pos-programa-mna-v-)
 * [ITESM MLOps Course GitHub Repository](https://github.com/carloslme/itesm-mlops)
-* []
+* [Google Bard: an artificial intelligence chatbot] (https://bard.google.com/)
+* [Phind: AI Search Engine and Pair Programmer] (https://www.phind.com/)
+
 ## Contact information
 
 * **Credits**
@@ -599,13 +601,14 @@ Here you will find information about this project and more.
     ------------
 
   * **Development Lead**
+    * Ricardo Bernal  <rickybernal@gmail.com>
+    * [GitHub Profile](https://github.com/RichieBernal)
+    * [LinkedIn](www.linkedin.com/in/act-ricardo-bernal)
 
+
+* **Contributors**
     * Carlos Mejia <carloslmescom@gmail.com>
     * [GitHub Profile](https://github.com/carloslme/)
     * [LinkedIn](https://www.linkedin.com/in/carloslme/)
-
-* **Contributors**
-
 ------------
 
-None yet. Why not be the first?
