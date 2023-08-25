@@ -39,7 +39,7 @@ In other words, knowledge is integrated regarding the learning of good software 
 
 ### Links to experiments like notebooks
 
-You can find the Titanic experiments here:
+You can find the Acoustic Extinguisher Fire experiments in [folder](/docs/notebooks):
 
 * [1_exploring_data.ipynb](docs\notebooks\1_exploring_data.ipynb)
 * [2_general_ideas.ipynb](docs\notebooks\2_general_ideas.ipynb)
