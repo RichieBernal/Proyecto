@@ -6,7 +6,7 @@ Welcome to the final project focused on MLOps, where the key concepts of ML fram
 
 ## About the project
 
-The overall goal of this project is to build a robust and reproducible MLOps workflow for developing, training, and deploying machine learning models. A linear regression model will be used as a proof of concept due to its simplicity, and it will be applied to the Titanic data set to predict the probability of survival of a passenger based on certain characteristics.
+The overall goal of this project is to build a robust and reproducible MLOps workflow for developing, training, and deploying machine learning models. A linear regression model will be used as a proof of concept due to its simplicity, and it will be applied to the  Acoustic Extinguisher Fire Dataset to predict the probability of extinguishing flame with a sound wave.
 
 This project covers the following topics:
 
@@ -155,7 +155,7 @@ Follow the next steps to run the test.
 
 ### Individual Fastapi and Use Deployment
 
-* Run the next command to start the Titanic API locally
+* Run the next command to start the FAE API locally
 
     ```bash
     uvicorn FAE.api.main:app --reload
