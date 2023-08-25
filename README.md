@@ -514,7 +514,7 @@ Open a new terminal, and execute the following commands:
     Output:
 
     ```bash
-    Successfully copied 3.07kB to ...\Proyecto\.
+    Successfully copied 3.07kB to .../Proyecto/.
     ```
 
 2. You can inspect the logs and see something similar to this:
