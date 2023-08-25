@@ -1,3 +1,5 @@
-# REST API - Frontend
+# Docker Usage
 
-This REST API is a frontend and works as a load-balancer to serve multiple models, by pointing the predictions to different model versions.
+This [folder](../app) contains [docker file](\Dockerfile) and instruction for usage it.
+
+Check the [Individual deployment of the API with Docker and usage](../../README.md#individual-deployment-of-the-api-with-docker-and-usage) to know how to run it.
