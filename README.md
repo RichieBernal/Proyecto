@@ -77,7 +77,7 @@ Run the following command to install the libraries/packages.
 To train the Logistic Model, only run the following code:
 
 ```bash
-python c:/Users/rbernal/DocumeProyecto Final/ProyectoFinal/FAE/fae.py
+python FAE/fae.py
 ```
 
 Output:
