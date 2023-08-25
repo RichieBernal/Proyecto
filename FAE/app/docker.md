@@ -1,0 +1,1 @@
+In this [Dockerfile](Dockerfile) , we added a VOLUME instruction to specify that the /logs directory inside the container should be mounted as a volume. When the container is running, any files written to /logs inside the container will be automatically copied to the local hard drive.
