@@ -11,9 +11,9 @@ Logging often provide features such as log levels (e.g., DEBUG, INFO, WARNING, E
 
 ## Logs in FAE proyect:
 
-Every module has integrated code for save info logs. 
+Every module has integrated code for save info logs [logs](../logs/). 
 
-You can find the INFO logs for modules here:
+When running [fae.py](..//fae.py) can find the INFO  for modules here:
 
 * [load.log](load.log)
 * [preprocess.log](preprocess.log)
