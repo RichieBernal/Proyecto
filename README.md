@@ -327,7 +327,7 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    root@2f1f34498517:/# 
+    root@f9c98547534f:/# 
     ```
 
 2. Check the existing files:
@@ -400,7 +400,7 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    Deleted: sha256:bb48551cf5423bad83617ad54a8194501aebbc8f3ebb767de62862100d4e7fd2
+    Deleted: sha256:72105db159a32ecef8d998c1b5761c8a894cb041571583088208e5754679059e
     ```
 
 ### Complete deployment of all containers with Docker Compose and usage
