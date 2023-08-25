@@ -1,4 +1,6 @@
 """Main module."""
+
+import logging
 from load.load_data import DataRetriever
 from train.train_data import FireDataPipeline
 import pandas as pd
@@ -7,6 +9,12 @@ import joblib
 import os
 from sklearn.metrics import accuracy_score, roc_auc_score
 
+logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
+logger.setLevel(logging.DEBUG) # Configuramos el nivel de logging
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
+file_handler = logging.FileHandler('FAE\logs\model.log') # Indicamos el nombre del archivo
+file_handler.setFormatter(formatter) # Configuramos el formato
+logger.addHandler(file_handler) # Agregamos el archivo
      
 DATASETS_DIR = './data/'
 URL = 'C:/Users/rbernal/Documents/GitHub/Proyecto/FAE/data/data_fire.csv'
@@ -76,4 +84,6 @@ if __name__ == "__main__":
     # # Save the model using joblib
     save_path = TRAINED_MODEL_DIR + PIPELINE_SAVE_FILE
     joblib.dump(logistic_regression_model, save_path)
+    logger.info("Model saved in {save_path}")
     print(f"Model saved in {save_path}")
+    

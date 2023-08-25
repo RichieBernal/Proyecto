@@ -1,4 +1,4 @@
-
+import logging
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
@@ -7,6 +7,17 @@ from preprocess.preprocess_data import (
     FeatureSelector,
     OrderingFeatures
 )
+
+logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
+logger.setLevel(logging.INFO) # Configuramos el nivel de logging
+
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
+
+file_handler = logging.FileHandler('FAE/logs/train.log') # Indicamos el nombre del archivo
+
+file_handler.setFormatter(formatter) # Configuramos el formato
+
+logger.addHandler(file_handler) # Agregamos el archivo
 
 class FireDataPipeline:
     """
@@ -44,6 +55,7 @@ class FireDataPipeline:
                                 ('scaling', MinMaxScaler()),
                               ]
         )
+        logger.info("Pipeline ok")
         return self.PIPELINE
     
     def fit_logistic_regression(self, X_train, y_train):
@@ -61,6 +73,7 @@ class FireDataPipeline:
         pipeline = self.create_pipeline()
         pipeline.fit(X_train, y_train)
         logistic_regression.fit(pipeline.transform(X_train), y_train)
+        logger.info("Regresión lógística aplicada al entrenamiento")
         return logistic_regression
     
     def transform_test_data(self, X_test):
@@ -74,4 +87,5 @@ class FireDataPipeline:
         - transformed_data (pandas.DataFrame or numpy.ndarray): The preprocessed test data.
         """
         pipeline = self.create_pipeline()
+        logger.info("Regresión lógística aplicada a la prueba")
         return pipeline.transform(X_test)

@@ -1,5 +1,17 @@
+import logging
 import argparse
 import joblib
+
+logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
+logger.setLevel(logging.DEBUG) # Configuramos el nivel de logging
+
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
+
+file_handler = logging.FileHandler('FAE\logs\predict.log') # Indicamos el nombre del archivo
+
+file_handler.setFormatter(formatter) # Configuramos el formato
+
+logger.addHandler(file_handler) # Agregamos el archivo
 
 class ModelPredictor:
     """
@@ -48,4 +60,5 @@ if __name__ == "__main__":
     new_data = args.new_data
 
     predictions = predictor.predict(new_data)
+    logger.info(f"Resultado predicción: {predictions}")
     print(predictions)

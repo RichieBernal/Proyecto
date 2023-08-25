@@ -1,7 +1,19 @@
+import logging
 import pandas as pd
 import numpy as np
 import re
 import os
+
+logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
+logger.setLevel(logging.DEBUG) # Configuramos el nivel de logging
+
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
+
+file_handler = logging.FileHandler('FAE\logs\load.log') # Indicamos el nombre del archivo
+
+file_handler.setFormatter(formatter) # Configuramos el formato
+
+logger.addHandler(file_handler) # Agregamos el archivo
 
 class DataRetriever:
     """
@@ -34,13 +46,16 @@ class DataRetriever:
         # Create directory if it does not exist
         if not os.path.exists(self.DATASETS_DIR):
             os.makedirs(self.DATASETS_DIR)
+            logger.info("Directory create successfully")
             print(f"Directory '{self.DATASETS_DIR}' created successfully.")
         else:
+            logger.info("Directory alraeady successfully")
             print(f"Directory '{self.DATASETS_DIR}' already exists.")
 
         # Save data to CSV file
         data.to_csv(self.DATASETS_DIR + self.RETRIEVED_DATA, index=False)
 
+        logger.info("Data saved")
         return f'Data stored in {self.DATASETS_DIR + self.RETRIEVED_DATA}'
     
 

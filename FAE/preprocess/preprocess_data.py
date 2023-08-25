@@ -1,8 +1,20 @@
+import logging
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_array
 import pandas as pd
 import re
 import numpy as np
+
+logger = logging.getLogger(__name__) # Indicamos que tome el nombre del modulo
+logger.setLevel(logging.DEBUG) # Configuramos el nivel de logging
+
+formatter = logging.Formatter('%(asctime)s:%(name)s:%(module)s:%(levelname)s:%(message)s') # Creamos el formato
+
+file_handler = logging.FileHandler('FAE\logs\preprocess.log') # Indicamos el nombre del archivo
+
+file_handler.setFormatter(formatter) # Configuramos el formato
+
+logger.addHandler(file_handler) # Agregamos el archivo
 
 
 class OneHotEncoder(BaseEstimator, TransformerMixin):
@@ -78,6 +90,7 @@ class OneHotEncoder(BaseEstimator, TransformerMixin):
         X = X.copy()
         X = pd.concat([X, pd.get_dummies(X[self.variables], drop_first=True)], axis=1)
         X.drop(self.variables, axis=1)
+        logger.info(f"Creacion de nuevas categorías")
 
         # Adding missing dummies, if any
         missing_dummies = [var for var in self.dummies if var not in X.columns]
@@ -234,6 +247,7 @@ class OrderingFeatures(BaseEstimator, TransformerMixin):
             DROP_COLS_AFTER = ['FUEL']
             X[self.ordered_features]
             X.drop(DROP_COLS_AFTER, axis=1, inplace=True)
+            logger.info(f"DataFRame transformado")
             return X
         elif isinstance(X, np.ndarray):
             # print("return np")
