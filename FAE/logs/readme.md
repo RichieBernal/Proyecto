@@ -12,6 +12,7 @@ Logging often provide features such as log levels (e.g., DEBUG, INFO, WARNING, E
 ## Logs in FAE proyect:
 
 Every module has integrated code for save info logs. 
+
 You can find the INFO logs for modules here:
 
 * [load.log](load.log)
