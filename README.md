@@ -368,7 +368,7 @@ Follow the next steps to run the test.
     Output:
 
     ```bash
-    Successfully copied 4.1kB to C:\Users\rbernal\Documents\GitHub\Proyecto\.
+    Successfully copied 4.1kB to C:/Users/rbernal/Documents/GitHub/Proyecto/.
     ```
 
 #### Delete container and image
@@ -508,7 +508,7 @@ Open a new terminal, and execute the following commands:
 1. Copy the `frontend` logs to the root folder:
 
     ```bash
-    docker cp itesm_mlops_project-frontend-1:/frontend.log .
+    docker cp fae-frontend-1:/frontend.log .
     ```
 
     Output:
